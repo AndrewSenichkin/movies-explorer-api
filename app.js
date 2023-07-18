@@ -1,16 +1,14 @@
-require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
 const cors = require('cors');
 const helmet = require('helmet');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const routes = require('./routes/index');
 const limiter = require('./middlewares/rateLimiter');
+const { MONGO_URL } = require('./utils/config');
 
-const URL = 'mongodb://127.0.0.1:27017/mestodb';
 const { PORT = 3000 } = process.env;
 
 mongoose
@@ -30,7 +28,6 @@ app.use(helmet());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cookieParser());
 app.use(requestLogger);
 app.use(routes);
 
@@ -51,6 +48,16 @@ app.use((err, req, res, next) => {
   next();
 });
 
-app.listen(PORT, () => {
-  console.log(`App listening on port successfully ${PORT}`);
-});
+async function startServer() {
+  mongoose.set('strictQuery', false);
+  try {
+    await mongoose.connect(MONGO_URL);
+    await app.listen(PORT);
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.log(err);
+  }
+}
+startServer()
+  // eslint-disable-next-line no-console
+  .then(() => console.log(`App listening on port successfully\n${MONGO_URL}\nPort: ${PORT}`));
