@@ -8,6 +8,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const routes = require('./routes/index');
 const limiter = require('./middlewares/rateLimiter');
 const { MONGO_URL } = require('./utils/config');
+const errorHandler = require('./middlewares/errorHandler');
 
 const { PORT = 3000 } = process.env;
 
@@ -34,19 +35,7 @@ app.use(routes);
 app.use(errorLogger);
 app.use(errors());
 
-app.use((err, req, res, next) => {
-  const {
-    status = 500,
-    message,
-  } = err;
-  res.status(status)
-    .send({
-      message: status === 500
-        ? 'На сервере произошла ошибка'
-        : message,
-    });
-  next();
-});
+app.use(errorHandler);
 
 async function startServer() {
   mongoose.set('strictQuery', false);
