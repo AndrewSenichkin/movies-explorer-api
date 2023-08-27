@@ -1,0 +1,214 @@
+.search {
+    border-bottom: 1px solid #E8E8E8;
+    padding: 70px 70px;
+    background-color: #FAFAFA;
+}
+
+.search__container {
+    flex-direction: row;
+    align-items: center;
+    background: #FFFFFF;
+    border-radius: 9px;
+    margin: 0 0 69px;
+    min-height: 72px;
+    display: flex;
+    box-shadow: 0px 3px 14px rgba(0, 0, 0, 0.08);
+}
+
+.search__border {
+    background: #E8E8E8;
+    margin: 0 27px 0;
+    height: 40px;
+    width: 1px;
+}
+
+.search__toggle {
+    justify-content: space-around;
+    align-items: center;
+    display: flex;
+}
+
+.search__toggle_mini-size {
+    display: none;
+}
+
+.search__films {
+    padding-right: 30px;
+    margin: 0 0 0 15px;
+    line-height: 18px;
+    font-weight: 400;
+    font-size: 13px;
+}
+
+.search__tumbler {
+    filter: drop-shadow(0 2px 2px #E5E5E8);
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    height: 14px;
+    width: 34px;
+}
+
+.search__input {
+    border: none;
+    background: #FFFFFF;
+    padding: 0 0 0 10px;
+    font-style: normal;
+    line-height: 20px;
+    font-weight: 400;
+    font-size: 18px;
+    outline: none;
+    width: 100%;
+}
+
+.search__input:focus {
+    border-bottom: #FF6838 1px solid;
+    width: 90%;
+}
+
+.search__input::placeholder {
+    color: #a0a0a0;
+}
+
+.search__button {
+    transition: opacity 0.2s linear;
+    background-color: #FFFFFF;
+    padding: 5px 3px 3px 2px;
+    line-height: 18px;
+    font-weight: 500;
+    font-size: 11px;
+    color: #FFFFFF;
+    border: none;
+    margin: 0;
+}
+
+.search__button:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.search__checkbox {
+    display: none;
+}
+
+.search__slider {
+    background-color: #2be080;
+    transform: scale(-1, -1);
+    border-radius: 16px;
+    position: absolute;
+    transition: 0.6s;
+    inset: 0;
+}
+
+.search__slider::before {
+    border: 1px solid #FFFFFF;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    position: absolute;
+    height: 10px;
+    content: "";
+    width: 10px;
+    bottom: 1px;
+    left: 1px;
+}
+
+.search__checkbox:checked + .search__slider {
+    background-color: #2BE080;
+}
+
+.search__checkbox:checked + .search__slider::before {
+    transform: translateX(20px);
+}
+
+.search__slider:hover {
+    cursor: pointer;
+    opacity: 0.4;
+}
+
+.search__search-image {
+    margin-left: 19px;
+    height: 34px;
+    width: 34px;
+}
+
+@media screen and (max-width: 768px) {
+    .search {
+        flex-direction: column;
+        padding: 80px 0 108px;
+        margin: 0 30px 0;
+    }
+
+    .search__container {
+        width: 100%;
+        margin: 0;
+    }
+
+    .search__border {
+        margin: 0 18px 0;
+    }
+
+    .search__search-image {
+        margin-left: 19px;
+        height: 34px;
+        width: 34px;
+    }
+
+    .search__input {
+        padding: 0 11px;
+    }
+
+    .search__films {
+        padding-right: 20px;
+        padding-left: 0;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .search {
+        padding: 80px 0 45px;
+        margin: 0 10px 0;
+    }
+
+    .search__container {
+        margin: 0 0 44px;
+        width: 100%;
+    }
+    
+    .search__toggle {
+        display: none;
+    }
+    .search__input {
+        padding: 0 19px 0;
+        line-height: 20px;
+        font-size: 14px;
+    }
+
+    .search__search-image {
+        margin-right: -4px;
+    }
+
+    .search__search-image-none {
+        display: none;
+    }
+
+    .search__toggle_mini-size {
+        justify-content: center;
+        align-items: center;
+        margin: 0 0 0 0;
+        display: flex;
+    }
+
+    .search__films {
+        padding-right: 2px;
+        font-size: 11px;
+    }
+
+    .search__border {
+        display: none;
+    }
+
+    .search__button {
+        margin-right: 20px;
+    }
+
+}

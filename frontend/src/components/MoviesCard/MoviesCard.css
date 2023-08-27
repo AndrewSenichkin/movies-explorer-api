@@ -1,0 +1,111 @@
+.movies-card__card {
+  box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  justify-content: flex-start;
+  flex-direction: column;
+  max-width: 100%;
+  display: flex;
+  background-color: #ffffff;
+}
+
+.movies-card__title {
+  line-height: 18px;
+  font-weight: 500;
+  font-size: 15px;
+  color: #000000;
+  margin: 0;
+}
+
+.movies-card__time {
+  margin: 10px 0 0 0;
+  line-height: 13px;
+  font-weight: 400;
+  font-size: 11px;
+  color: #8B8B8B;
+}
+
+.movies-card__link {
+  flex-direction: column;
+  text-decoration: none;
+  display: flex;
+
+}
+
+.movies-card__info {
+  justify-content: space-between;
+  margin: 0 14px 0 14px;
+  align-items: center;
+  min-height: 68px;
+  display: flex;
+}
+
+.movies-card__delete-favorites-btn {
+  background-image: url("../../images/buttonDelete.svg");
+  background-repeat: no-repeat;
+  background-color: #fff;
+  min-height: 30px;
+  min-width: 30px;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.movies-card__delete-favorites-btn:hover {
+  transition: 1.5s;
+  opacity: 0.5;
+}
+
+.movies-card__add-favorites-btn {
+  background-image: url("../../images/buttonWHITE.svg");
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-color: #FFFFFF;
+  min-height: 30px;
+  min-width: 30px;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.movies-card__add-favorites-btn_active {
+  background-image: url("../../images/buttonGREEN.svg");
+}
+
+.movies-card__add-favorites-btn:hover {
+  background-image: url("../../images/buttonGREEN.svg");
+  transition: 1.5s;
+}
+
+.movies-card__image {
+
+  background-color: #F9F9F9;
+  margin: 0 auto 0 auto;
+  object-fit: cover;
+  min-width: 100%;
+  width: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  aspect-ratio: 16 / 9;
+}
+
+@media screen and (max-width: 768px) {
+  .movies-card__card {
+    min-height: 258px;
+    max-width: 339px;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .movies-card__card {
+    min-height: 236px;
+    min-width: 300px
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .movies-card__image {
+    max-height: 168px;
+  }
+}

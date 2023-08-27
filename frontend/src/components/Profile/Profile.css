@@ -1,0 +1,152 @@
+.profile {
+  justify-content: flex-start;
+  flex-direction: column;
+  margin: 0 auto 0 auto;
+  align-items: center;
+  min-height: 626px;
+  max-width: 1280px;
+  display: flex;
+}
+
+.profile__title {
+  margin: 75px 0 104px;
+  font-weight: 500;
+  font-size: 24px;
+  color: #000000;
+}
+
+.profile__subtitle {
+  border-bottom: 1px solid #E8E8E8;
+  align-items: center;
+  font-weight: 500;
+  font-size: 11px;
+  display: flex;
+  height: 50px;
+  width: 20%;
+}
+
+.profile__subtitle_bottom {
+  border-bottom: none;
+}
+
+.profile__form {
+  padding-bottom: 16px;
+  max-width: 410px;
+  width: 100%;
+}
+
+.profile__label {
+  align-items: center;
+  display: flex;
+}
+
+.profile__btn {
+  background: transparent;
+  text-align: center;
+  font-weight: 400;
+  font-size: 13px;
+  cursor: pointer;
+  margin: 0 auto;
+  display: block;
+  border: none;
+  padding: 0;
+}
+
+.profile__btn_type_edit {
+  margin-top: 202px;
+  color: #000000;
+}
+
+.profile__btn_type_logout {
+  font-weight: 500;
+  color: #EE3465;
+}
+
+.profile__input {
+  border: none;
+  border-bottom: 1px solid #E8E8E8;
+  background: transparent;
+  font-style: normal;
+  line-height: 13px;
+  text-align: right;
+  font-weight: 400;
+  font-size: 11px;
+  outline: none;
+  height: 50px;
+  padding: 0;
+  width: 80%;
+}
+
+.profile__input::placeholder {
+  color: #000000;
+}
+
+.profile__input_bottom {
+  border-bottom: none;
+}
+
+.profile__input:focus {
+  outline: 1px solid #FF6838;
+  width: 90%;
+}
+
+.profile__input:hover {
+  outline: 1px solid #FF6838;
+  width: 90%;
+}
+
+@media screen and (max-width: 770px) {
+  .profile__btn_type_edit {
+    margin-top: 192px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .profile {
+    min-height: 920px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .profile__title {
+    margin: 237px 0 77px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .profile__btn_type_edit {
+    align-items: center;
+    text-align: center;
+    margin-top: 360px;
+    line-height: 15px;
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .profile__btn_type_logout {
+    align-items: center;
+    text-align: center;
+    line-height: 15px;
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .profile {
+    min-height: 706px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .profile__title {
+    margin: 72px 0 60px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .profile__form {
+    max-width: 260px;
+    margin: 0 0 0;
+  }
+}

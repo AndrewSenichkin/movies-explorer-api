@@ -1,0 +1,11 @@
+.movies {
+  margin: 0 auto 0 auto;
+  max-width: 1280px;
+  background-color: #FAFAFA;
+}
+
+@media screen and (max-width: 768px) {
+  .movies {
+    max-width: 768px;
+  }
+}
