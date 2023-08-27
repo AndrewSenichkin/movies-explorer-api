@@ -3,17 +3,17 @@ const { urlRegex, passwordRegex, emailRegex } = require('../utils/constants');
 
 const createMovieValidation = celebrate({
   body: Joi.object().keys({
-    thumbnail: Joi.string().required().pattern(urlRegex),
-    trailer: Joi.string().required().pattern(urlRegex),
-    image: Joi.string().required().pattern(urlRegex),
-    description: Joi.string().required(),
+    country: Joi.string().required(),
     director: Joi.string().required(),
     duration: Joi.number().required(),
-    movieId: Joi.number().required(),
-    country: Joi.string().required(),
+    year: Joi.string().required(),
+    description: Joi.string().required(),
+    image: Joi.string().required().pattern(urlRegex),
+    trailer: Joi.string().required().pattern(urlRegex),
     nameRU: Joi.string().required(),
     nameEN: Joi.string().required(),
-    year: Joi.string().required(),
+    thumbnail: Joi.string().required().pattern(urlRegex),
+    movieId: Joi.number().required(),
   }),
 });
 
