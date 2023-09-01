@@ -132,7 +132,7 @@ function App() {
             setIsInfoTooltipOpen(true);
         }
     };
-
+    
     const handleLoginOut = () => {
         localStorage.removeItem("findMovies");
         localStorage.removeItem("checkbox");
@@ -178,8 +178,8 @@ function App() {
                                 <Header auth={loggedIn}/>
                                 <Profile
                                     handleTokenCheck={handleTokenCheck}
-                                    updateUser={handleUpdateUserInfo}
-                                    onLogin={handleLoginOut}
+                                    onUpdateUser={handleUpdateUserInfo}
+                                    signOut={handleLoginOut}
                                 />
                             </ProtectedRoute>
                         }
