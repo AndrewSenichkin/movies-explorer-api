@@ -5,10 +5,17 @@ import HeaderNav from "./HeaderNav/HeaderNav";
 import Logo from "../Logo/Logo";
 import React from "react";
 import './Header.css'
+import { useLocation } from "react-router-dom";
 
 const Header = ({auth}) => {
     const [isOpen, setIsOpen] = React.useState(false);
-
+    const { pathname } = useLocation();
+    const isBasePath = pathname === "/";
+    const isHeaderPath =
+    pathname === "/" ||
+    pathname === "/movies" ||
+    pathname === "/saved-movies" ||
+    pathname === "/profile";
     function handleClickOpen() {
         setIsOpen(true)
     }
@@ -17,18 +24,26 @@ const Header = ({auth}) => {
         setIsOpen(false)
     }
 
-    return (
-    <div>
-        <header className={`header ${!auth ? 'header__signup' : ''}`}>  
-            <div className='header__logo-container'>
-                <Logo/>
-                {auth && <HeaderNav onClick={handleClickOpen}/>}
-            </div>
-            {!auth ? <HeaderAuth/> : <NavProfileBtn isOpen={handleClickOpen}/>}
-            <Navigation isOpen={isOpen} onClick={handleClickClose}/>
-        </header>
-    </div>
-    );
+    if(isHeaderPath) {
+        return (
+        <div>
+            <header className={`header ${!isBasePath  && 'header__signup'}`}>  
+                <div className='header__logo-container'>
+                    <Logo/>
+                    {auth && <HeaderNav onClick={handleClickOpen}/>}
+                </div>
+                {!auth ? <HeaderAuth/> : <NavProfileBtn isOpen={handleClickOpen}/>}
+                <Navigation 
+                isOpen={isOpen} 
+                onClick={handleClickClose}
+                isBasePath={isBasePath}
+                />
+            </header>
+        </div>
+        );
+    }else {
+        return null;
+    }
 }
 
 export default Header;
