@@ -2,6 +2,7 @@ import Forms from "../../utils/validation";
 import Logo from "../Logo/Logo";
 import "./Authorization.css";
 import React from "react";
+import { EMAIL_PATTERN, USERNAME_PATTERN } from "../../utils/constants";
 
 function Authorization(props) {
     const {values, errors, handleChange, handleSubmit} = Forms(props.onLogin);
@@ -31,6 +32,7 @@ function Authorization(props) {
                                 type="text"
                                 id="name"
                                 required
+                                pattern={USERNAME_PATTERN}
                             />
                         </li>
                     )}
@@ -40,7 +42,7 @@ function Authorization(props) {
                     <li className="authorization__part-form">
                         <p className="authorization__name">E-mail</p>
                         <input
-                            pattern="[A-Za-z0-9._+\-']+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$"
+                            pattern={EMAIL_PATTERN}
                             className="authorization__input"
                             value={values.email || ""}
                             onChange={handleChange}

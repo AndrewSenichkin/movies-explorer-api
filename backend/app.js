@@ -1,8 +1,8 @@
-const express = require('express');
+const cors = require('cors');
 const mongoose = require('mongoose');
+const express = require('express');
 const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
-const cors = require('cors');
 const helmet = require('helmet');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const routes = require('./routes/index');
@@ -22,11 +22,11 @@ mongoose
   });
 
 const app = express();
+app.use(express.json());
 app.use(cors());
+app.use(helmet());
 // подключаем rate-limiter
 app.use(limiter);
-app.use(helmet());
-app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(requestLogger);

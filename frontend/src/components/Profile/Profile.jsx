@@ -2,6 +2,7 @@ import {CurrentUserContext} from "../../context/CurrentUserContext";
 import React, {useContext, useEffect, useState} from "react";
 import Forms from "../../utils/validation";
 import "./Profile.css";
+import { EMAIL_PATTERN, USERNAME_PATTERN } from "../../utils/constants";
 
 function Profile(props) {
     const {values, errors, handleChange, handleSubmit} = Forms(props.updateUser);
@@ -40,6 +41,7 @@ function Profile(props) {
                             type="text"
                             name="name"
                             required
+                            pattern={USERNAME_PATTERN}
                         />
                     </label>
                     <label className="profile__label" htmlFor="email">
@@ -52,6 +54,7 @@ function Profile(props) {
                             type="email"
                             name="email"
                             required
+                            pattern={EMAIL_PATTERN}
                         />
                     </label>
                     <button

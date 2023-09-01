@@ -19,8 +19,7 @@ const Header = ({auth}) => {
 
     return (
     <div>
-        {auth ? (
-        <header className='header header__signup'>  
+        <header className={`header ${!auth ? 'header__signup' : ''}`}>  
             <div className='header__logo-container'>
                 <Logo/>
                 {auth && <HeaderNav onClick={handleClickOpen}/>}
@@ -28,16 +27,6 @@ const Header = ({auth}) => {
             {!auth ? <HeaderAuth/> : <NavProfileBtn isOpen={handleClickOpen}/>}
             <Navigation isOpen={isOpen} onClick={handleClickClose}/>
         </header>
-        ) : (
-            <header className='header'>  
-            <div className='header__logo-container'>
-                <Logo/>
-                {auth && <HeaderNav onClick={handleClickOpen}/>}
-            </div>
-            {!auth ? <HeaderAuth/> : <NavProfileBtn isOpen={handleClickOpen}/>}
-            <Navigation isOpen={isOpen} onClick={handleClickClose}/>
-        </header>  
-        )}
     </div>
     );
 }
