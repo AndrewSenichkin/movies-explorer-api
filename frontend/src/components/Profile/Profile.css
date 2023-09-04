@@ -52,6 +52,11 @@
   padding: 0;
 }
 
+.profile__btn_disable {
+  pointer-events: none;
+  color:#F8F8F8;
+}
+
 .profile__btn_type_edit {
   margin-top: 202px;
   color: #000000;

@@ -7,8 +7,7 @@ import { EMAIL_PATTERN, USERNAME_PATTERN } from "../../utils/constants";
 function Profile({ isLoading, signOut, onUpdateUser}) {
   const currentUser = useContext(CurrentUserContext);
 
-  const { enteredValues, handleChangeInput, isFormValid, resetForm } =
-    useForm();
+  const { values, handleChangeInput, inactive, resetForm } = useForm();
 
   // Состояние для отслеживания изменений в значениях полей формы
   const [isLastValues, setIsLastValues] = useState(false);
@@ -24,16 +23,16 @@ function Profile({ isLoading, signOut, onUpdateUser}) {
   function handleFormSubmit(e) {
     e.preventDefault();
     onUpdateUser({
-      name: enteredValues.name,
-      email: enteredValues.email,
+      name: values.name,
+      email: values.email,
     });
   }
 
   // Проверка, являются ли текущие значения полей формы последними сохраненными значениями
   useEffect(() => {
     if (
-      currentUser.name === enteredValues.name &&
-      currentUser.email === enteredValues.email
+      currentUser.name === values.name &&
+      currentUser.email === values.email
     ) {
       setIsLastValues(true);
     } else {
@@ -41,7 +40,7 @@ function Profile({ isLoading, signOut, onUpdateUser}) {
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [enteredValues]);
+  }, [values]);
 
   return (
     <main>
@@ -63,7 +62,7 @@ function Profile({ isLoading, signOut, onUpdateUser}) {
               type="text"
               name="name"
               required
-              value={enteredValues.name || ""}
+              value={values.name || ""}
               pattern={USERNAME_PATTERN}
               onChange={handleChangeInput}
             />
@@ -79,15 +78,15 @@ function Profile({ isLoading, signOut, onUpdateUser}) {
               type="email"
               name="email"
               required
-              value={enteredValues.email || ""}
+              value={values.email || ""}
               pattern={EMAIL_PATTERN}
             />
           </label>
           <button
-            disabled={!isFormValid ? true : false}
-            className={isFormValid || isLoading || isLastValues
+            disabled={!inactive ? true : false}
+            className={inactive || isLoading || isLastValues
                         ? "profile__btn profile__btn_type_edit"
-                        : "profile__btn_disable"
+                        : "profile__btn profile__btn_disable"
                       }
             type="submit"
           >

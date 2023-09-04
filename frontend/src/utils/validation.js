@@ -3,11 +3,11 @@ import { useState, useCallback } from "react";
 //Hook useForm для управления состоянием формы
 const useForm = () => {
     //Состояние для хранения введенных значений полей формы.
-    const [enteredValues, setEnteredInputValues] = useState({})
+    const [values, setValues] = useState({});
     //Состояние для хранения ошибок валидации полей формы.
-    const [errors, setErrors] = useState({})
+    const [errors, setErrors] = useState({});
     //Состояние, указывающее на валидность всей формы.
-    const [isFormValid, setIsFormValid] = useState(false)
+    const [inactive, setInactive] = useState(false);
   
     //Обработчик изменений полей формы. Обновляет состояния
     // введенных значений, ошибок валидации и валидности формы.
@@ -16,8 +16,8 @@ const useForm = () => {
       const value = event.target.value
   
       // Обновляем состояние введенных значений
-      setEnteredInputValues({
-        ...enteredValues,
+      setValues({
+        ...values,
         [name]: value,
       })
   
@@ -28,24 +28,27 @@ const useForm = () => {
       })
   
       // Обновляем состояние валидности формы
-      setIsFormValid(event.target.closest(".form").checkValidity())
+      setInactive
+      (event.target.closest(".form").checkValidity())
     }
   
     //Функция для сброса формы. Устанавливает новые значения состояний формы, переданные в аргументах.
     const resetForm = useCallback(
-      (newValues = {}, newErrors = {}, newIsFormValid = false) => {
+      (values = {}, newErrors = {}, newinactive = false) => {
         // Устанавливаем новые значения состояний формы
-        setEnteredInputValues(newValues)
+        setValues(values)
         setErrors(newErrors)
-        setIsFormValid(newIsFormValid)
+        setInactive
+        (newinactive)
       },
-      [setEnteredInputValues, setErrors, setIsFormValid]
+      [setValues, setErrors, setInactive
+      ]
     )
     // Возвращаем состояния и функции для управления формой
     return {
-      enteredValues,
+      values,
       handleChangeInput,
-      isFormValid,
+      inactive,
       errors,
       resetForm,
     }
