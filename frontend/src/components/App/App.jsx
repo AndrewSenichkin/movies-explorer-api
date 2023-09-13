@@ -22,7 +22,7 @@ import InfoTooltipUpdate from "../infoTooltipUpdate/infoTooltipUpdate"
 
 import CurrentUserContext from "../../contexts/CurrentUserContext"
 
-import * as api from "../../utils/MainApi"
+import * as api from "../../utils/MainApi.js"
 
 function App() {
   const location = useLocation()
