@@ -1,22 +1,24 @@
 .filter {
   display: flex;
+  align-items: center;
 }
 
 .filter__title {
   font-weight: 400;
   font-size: 13px;
   line-height: 18px;
-  color: #ffffff;
+  color: #000;
   margin-left: 12px;
+  padding-right: 30px;
 }
 
 .filter__checkbox {
-  width: 36px;
-  height: 20px;
+  width: 34px;
+  height: 14px;
   border: none;
   outline: none;
   background: #a0a0a0;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.08);
+  
   border-radius: 16px;
   position: relative;
   cursor: pointer;
@@ -25,12 +27,11 @@
 
 .filter__checkbox::after {
   position: absolute;
-  height: 16px;
-  width: 16px;
+  height: 10px;
+  width: 10px;
   top: 2px;
   left: 2px;
-  background: #ffffff;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.08);
+  background: #F5F5F5;
   content: "";
   border-radius: 50%;
   transition: 0.3s ease;
@@ -41,8 +42,8 @@
 }
 
 .filter__checkbox:checked::after {
-  height: 16px;
-  width: 16px;
+  height: 10px;
+  width: 10px;
   position: absolute;
   top: 2px;
   right: 2px;
@@ -51,7 +52,7 @@
   content: "";
   border-radius: 50%;
   transition: 0.4s ease;
-  transform: translate(16px);
+  transform: translate(20px);
 }
 
 @media screen and (max-width: 576px) {

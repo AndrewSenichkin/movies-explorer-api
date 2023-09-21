@@ -1,5 +1,5 @@
 const { Joi, celebrate } = require('celebrate');
-const { urlRegex, passwordRegex, emailRegex } = require('../utils/constants');
+const { urlRegex } = require('../utils/constants');
 
 const createMovieValidation = celebrate({
   body: Joi.object().keys({
@@ -25,23 +25,23 @@ const deleteMovieValidation = celebrate({
 
 const createValidation = celebrate({
   body: Joi.object().keys({
-    password: Joi.string().required().pattern(passwordRegex),
+    password: Joi.string().required(),
     name: Joi.string().required().min(2).max(30),
-    email: Joi.string().required().email(),
+    email: Joi.string().required().email({ tlds: { allow: false } }),
   }),
 });
 
 const loginValidation = celebrate({
   body: Joi.object().keys({
-    password: Joi.string().required().pattern(passwordRegex),
-    email: Joi.string().required().email(),
+    password: Joi.string().required(),
+    email: Joi.string().required().email({ tlds: { allow: false } }),
   }),
 });
 
 const updateUserInfoValidation = celebrate({
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30),
-    email: Joi.string().required().pattern(emailRegex),
+    email: Joi.string().required().email({ tlds: { allow: false } }),
   }),
 });
 

@@ -3,14 +3,15 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  background: #FAFAFA;
 }
 
 .cards__list {
   margin: 78px 70px 10px;
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 37px 28px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px 20px;
   height: 100%;
 }
 
@@ -28,9 +29,9 @@
   height: 36px;
   background-color: transparent;
   border: none;
-  background: #2f2f2f;
+  background: #F4F4F4;
   border-radius: 6px;
-  color: #fff;
+  color: #000;
   font-weight: 500;
   font-size: 12px;
   line-height: 15px;
@@ -41,7 +42,6 @@
 }
 
 .cards__button:hover {
-  border: 1px solid #2be080;
   opacity: 0.6;
 }
 
@@ -51,7 +51,6 @@
     margin: 81px auto -37px;
     grid-template-columns: repeat(2, 339px);
     gap: 30px 30px;
-    /* max-height: 1238px;*/
   }
 
   .cards__button-container {
@@ -65,10 +64,8 @@
     height: 237px;
   }
   .cards__list {
-    /*max-height: 1307px;*/
     margin: 50px auto 10px;
     grid-template-columns: repeat(1, 300px);
-    gap: 18px;
   }
 
   .cards__button {

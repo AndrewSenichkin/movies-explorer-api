@@ -1,15 +1,22 @@
-import React from "react"
-import { Link, NavLink } from "react-router-dom"
-import "./Header.css"
-import logo from "../../images/logo.svg"
-import account from "../../images/profile777.svg"
-import menu from "../../images/menu-button.svg"
-import Navigation from "../Navigation/Navigation"
+import React from "react";
+import { Link, NavLink } from "react-router-dom";
+import "./Header.css";
+import logo from "../../images/logo.svg";
+import account from "../../images/account.svg";
+import menu from "../../images/menu-button.svg";
+import Navigation from "../Navigation/Navigation";
+import { useLocation } from "react-router-dom";
 
 function Header({ loggedIn }) {
   
   const [isClicked, setIsClicked] = React.useState(false)
-
+  const { pathname } = useLocation();
+  const isBasePath = pathname === "/";
+  const isHeaderPath =
+  pathname === "/" ||
+  pathname === "/movies" ||
+  pathname === "/saved-movies" ||
+  pathname === "/profile";
   // Функция для смены цвета для активной ссылки
   const setActive = ({ isActive }) =>
     isActive ? "header__button_active" : "header__button"
@@ -21,11 +28,11 @@ function Header({ loggedIn }) {
   function handleClose() {
     setIsClicked(false)
   }
-
+  if(isHeaderPath) {
   return (
     <>
       {!loggedIn ? (
-        <header className="header" id="header">
+        <header className={`header ${!isBasePath  && 'header__signup'}`} id="header">
           <Link to="/" className="form__logo">
             <img src={logo} alt="логотип сайта" />
           </Link>
@@ -39,7 +46,7 @@ function Header({ loggedIn }) {
           </div>
         </header>
       ) : (
-        <header className="header header__gray" id="header-gray">
+        <header className={`header ${!isBasePath  && 'header__signup'}`} id="header-gray">
           <Link to="/" className="form__logo">
             <img src={logo} alt="логотип сайта" />
           </Link>
@@ -69,6 +76,7 @@ function Header({ loggedIn }) {
       )}
     </>
   )
+  }
 }
 
 export default Header

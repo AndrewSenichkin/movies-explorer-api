@@ -1,8 +1,7 @@
 import { checkResponse } from './utils';
-
+import { BASE_URL } from './constants';
+import { moviesApi } from './constants';
 //export const BASE_URL = 'http://localhost:3000';
-
-export const BASE_URL = 'https://api.kniwsdiplom.nomoredomains.xyz';
 
 export const register = (name, email, password) => {
   return fetch(`${BASE_URL}/signup`, {
@@ -75,30 +74,40 @@ export const getMovies = () => {
   }).then((res) => checkResponse(res));
 };
 
-// метод добавления новой карточки на сервер
-export const postCard = (data) => {
-  // console.log(data);
-  return fetch(`${BASE_URL}/movies`, {
-    method: 'POST',
+export async function saveMovie({
+  country,
+  director,
+  duration,
+  year,
+  description,
+  image,
+  nameEN,
+  nameRU,
+  trailerLink,
+  id,
+}) {
+  const data = await fetch(`${BASE_URL}/movies`, {
+    method: "POST",
     headers: {
-      Authorization: `Bearer ${localStorage.getItem('jwt')}`,
-      'Content-Type': 'application/json',
+      authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      country: data.country,
-      director: data.director,
-      duration: data.duration,
-      year: data.year,
-      description: data.description,
-      image: 'https://api.nomoreparties.co' + data.image.url,
-      trailerLink: data.trailerLink,
-      thumbnail: 'https://api.nomoreparties.co' + data.image.formats.thumbnail.url,
-      movieId: data.id,
-      nameRU: data.nameRU,
-      nameEN: data.nameEN,
+      country: country,
+      director: director,
+      duration: duration,
+      year: year,
+      description: description,
+      image: `${moviesApi}${image.url}`,
+      nameEN: nameEN,
+      nameRU: nameRU,
+      trailer: trailerLink,
+      thumbnail: `${moviesApi}${image.formats.thumbnail.url}`,
+      movieId: id,
     }),
-  }).then((res) => checkResponse(res));
-};
+  });
+  return checkResponse(data);
+}
 
 // метод удаления карточки с сервера
 export const deleteCard = (cardId) => {

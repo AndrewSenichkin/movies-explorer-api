@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs'); // импортируем bcrypt
 const jwt = require('jsonwebtoken'); // импортируем модуль jsonwebtoken
 const User = require('../models/user');
 const { passwordRegex } = require('../utils/constants');
-// централизованнуая обработка ошибок
+// централизованная обработка ошибок
 const NotFoundError = require('../errors/NotFoundError');
 const IncorrectDate = require('../errors/IncorrectDate');
 const Conflict = require('../errors/Conflict');
@@ -31,24 +31,51 @@ function login(req, res, next) {
     .catch(next);
 }
 
-function createUser(req, res, next) {
-  const { email, password, name } = req.body;
+// function createUser(req, res, next) {
+//   const { email, password, name } = req.body;
 
-  if (!passwordRegex.test(password)) throw new IncorrectDate('Пароль не соответствует регексу');
+//   if (!passwordRegex.test(password)) throw new IncorrectDate('Пароль не соответствует регексу');
 
-  bcrypt.hash(password, 10)
+//   bcrypt.hash(password, 10)
+//     .then((hash) => User.create({
+//       name,
+//       email,
+//       password: hash,
+//     }))
+//     .then(() => res.status(201).send({ message: 'Пользователь зарегистрирован' }))
+//     .catch((err) => {
+//       if (err.code === 11000) next(new Conflict('Пользователь уже существует'));
+//       else if (err.name === 'ValidationError') next(new IncorrectDate('Неккоректные данные'));
+//       else next(err);
+//     });
+// }
+const createUser = (req, res, next) => {
+  bcrypt
+    .hash(req.body.password, 10)
     .then((hash) => User.create({
-      name,
-      email,
+      email: req.body.email,
       password: hash,
+      name: req.body.name,
     }))
-    .then(() => res.status(201).send({ message: 'Пользователь зарегистрирован' }))
-    .catch((err) => {
-      if (err.code === 11000) next(new Conflict('Пользователь уже существует'));
-      else if (err.name === 'ValidationError') next(new IncorrectDate('Неккоректные данные'));
-      else next(err);
+    .then((user) => res.status(201).send({
+      email: user.email,
+      name: user.name,
+      _id: user._id,
+    }))
+    .catch((e) => {
+      if (e.code === 11000) {
+        next(new Conflict('Пользователь уже существует'));
+      } else if (e.name === 'ValidationError') {
+        next(
+          new IncorrectDate(
+            'Переданы некорректные данные при создании пользователя',
+          ),
+        );
+      } else {
+        next(e);
+      }
     });
-}
+};
 
 function getUserInfo(req, res, next) {
   const { _id } = req.user;

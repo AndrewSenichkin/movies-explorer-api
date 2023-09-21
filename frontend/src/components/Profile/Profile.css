@@ -28,7 +28,7 @@
   align-items: flex-start;
   font-weight: 500;
   font-size: 11px;
-  line-height: 13px;
+  line-height: 14px;
   min-height: 30px;
   cursor: text;
 }
@@ -39,12 +39,11 @@
   text-align: right;
   font-weight: 400;
   font-size: 11px;
-  line-height: 13px;
+  line-height: 14px;
   text-align: right;
-  color: #fff;
+  color: #000;
   border: none;
   outline: none;
-  background: #202020;
 }
 
 .profile__input-error {
@@ -59,11 +58,6 @@
   right: 0;
   text-align: right;
 }
-
-.profile__input:focus {
-  background-color: rgba(43, 224, 128, 0.4);
-}
-
 .profile__border {
   border-bottom: 1px solid #424242;
   margin-bottom: 17px;

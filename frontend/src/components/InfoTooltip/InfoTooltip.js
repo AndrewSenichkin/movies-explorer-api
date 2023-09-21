@@ -31,7 +31,7 @@ function InfoToolTip(props) {
               className="popup__signup-image"
             />
             <p className="popup__signup-title">
-              Что-то пошло не так. Попробуйте ещё раз!
+              Что-то пошло не так. Возможно пользователь уже существует!
             </p>
           </>
         )}

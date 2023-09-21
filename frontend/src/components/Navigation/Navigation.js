@@ -2,7 +2,7 @@
 import React from "react"
 import { Link, NavLink } from "react-router-dom"
 import "./Navigation.css"
-import account from "../../images/profile777.svg"
+import account from "../../images/account.svg"
 
 function Navigation({ handleClose }) {
   // Функция для смены цвета для активной ссылки
@@ -17,7 +17,6 @@ function Navigation({ handleClose }) {
       <div className="navigation__overlay-container"></div>
       <div className="navigation__menu">
         {/*handleClose - обработчик закрытия навигационного меню.*/}
-
         <button
           className="navigation__close-button"
           onClick={handleClose}
@@ -45,7 +44,7 @@ function Navigation({ handleClose }) {
           className="navigation__account-button"
           onClick={handleClose}
         >
-          <img src={account} alt="аккаунт" />
+          <img className="navigation__image" src={account} alt="аккаунт" />
         </Link>
       </div>
     </div>

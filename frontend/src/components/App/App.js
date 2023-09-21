@@ -191,7 +191,7 @@ function App() {
   function handleCardLike(card) {
     // Вызываем метод API для добавления карточки в избранное
     api
-      .postCard(card)
+      .saveMovie(card)
       .then((newMovie) => {
         // Если операция прошла успешно (без ошибок), выполняем следующие действия
         //Обновляем список избранных карточек (savedMovies),
@@ -201,8 +201,8 @@ function App() {
       .catch((err) => {
         // В случае ошибки при добавлении карточки в избранное, устанавливаем флаг isSuccess в значение false
         setIsSuccess(false)
-        console.log(err)
-        handleUnauthorized(err) // Обрабатываем ошибку авторизации
+        console.log(err);
+        //handleUnauthorized(err) // Обрабатываем ошибку авторизации
       })
   }
 

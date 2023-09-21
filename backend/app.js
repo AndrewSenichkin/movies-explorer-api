@@ -36,14 +36,14 @@ app.use(errorLogger);
 app.use(errors());
 
 app.use(errorHandler);
-
+app.listen(PORT);
 async function startServer() {
   mongoose.set('strictQuery', false);
   try {
     await mongoose.connect(MONGO_URL);
     await app.listen(PORT);
   } catch (err) {
-    // eslint-disable-next-line no-console
+  // eslint-disable-next-line no-console
     console.log(err);
   }
 }

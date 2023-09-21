@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react"
-import "./SearchForm.css"
-import FilterCheckbox from "../FilterCheckbox/FilterCheckbox"
-import { useLocation } from "react-router-dom"
+import React, { useState, useEffect } from "react";
+import "./SearchForm.css";
+import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
+import { useLocation } from "react-router-dom";
+import search from "../../images/search-button.svg";
+import searchBtn from "../../images/findSearch.svg";
 
 // Этот компонент представляет форму поиска фильмов.
 function SearchForm({ onSearchMoviesFilms, onFilterMovies, isShortFilm }) {
@@ -13,28 +15,28 @@ function SearchForm({ onSearchMoviesFilms, onFilterMovies, isShortFilm }) {
   // isShortFilm: Булево значение, указывающее, включен ли фильтр "короткометражные фильмы" или нет.
 
   //isQueryError: Состояние для отслеживания наличия ошибки при вводе запроса.
-  const [isQueryError, setIsQueryError] = useState(false)
+  const [isQueryError, setIsQueryError] = useState(false);
 
   // query: Состояние для хранения введенного пользователем запроса поиска.
-  const [query, setQuery] = useState("")
+  const [query, setQuery] = useState("");
 
   // location: Состояние, получаемое с помощью хука useLocation для получения текущего пути URL.
-  const location = useLocation()
+  const location = useLocation();
 
   // Функция handleChangeInputQuery вызывается при изменении значения в поле ввода и обновляет состояние query с новым значением.
   function handleChangeInputQuery(e) {
-    setQuery(e.target.value)
+    setQuery(e.target.value);
   }
 
   // Функция handleFormSubmit вызывается при отправке формы. Она проверяет, что введенный запрос не пустой, и вызывает функцию
   // onSearchMoviesFilms с передачей запроса в качестве аргумента. Если запрос пустой, устанавливается состояние isQueryError в true.
   function handleFormSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
     if (query.trim().length === 0) {
-      setIsQueryError(true)
+      setIsQueryError(true);
     } else {
-      setIsQueryError(false)
-      onSearchMoviesFilms(query)
+      setIsQueryError(false);
+      onSearchMoviesFilms(query);
     }
   }
 
@@ -46,14 +48,19 @@ function SearchForm({ onSearchMoviesFilms, onFilterMovies, isShortFilm }) {
       location.pathname === "/movies" &&
       localStorage.getItem("movieSearch")
     ) {
-      const localQuery = localStorage.getItem("movieSearch")
-      setQuery(localQuery)
+      const localQuery = localStorage.getItem("movieSearch");
+      setQuery(localQuery);
     }
-  }, [location])
+  }, [location]);
 
   return (
     <section className="search">
       <form className="search__form" id="form" onSubmit={handleFormSubmit}>
+        <img
+          className="search__search-image search__search-image-none"
+          src={search}
+          alt="поиск"
+        />
         <input
           name="query"
           className="search__input"
@@ -63,27 +70,28 @@ function SearchForm({ onSearchMoviesFilms, onFilterMovies, isShortFilm }) {
           onChange={handleChangeInputQuery}
           value={query || ""}
         ></input>
-
-        {/* Возвращается разметка формы поиска с полями ввода, кнопкой "Поиск", фильтром "короткометражные
- фильмы" (FilterCheckbox) и обработкой ошибки в случае некорректного ввода запроса.
-*/}
         <button className="search__button" type="submit">
-          Поиск
+          <img className="search__search-image" alt="поиск" src={searchBtn} />
         </button>
+        <div className="search__border" />
+        <div className="filter__standart-size">
+          <FilterCheckbox
+            onFilterMovies={onFilterMovies}
+            isShortFilm={isShortFilm}
+          />
+        </div>
       </form>
-
-      <FilterCheckbox
-        onFilterMovies={onFilterMovies}
-        isShortFilm={isShortFilm}
-      />
-
+      <div className="filter__mini-size">
+        <FilterCheckbox
+          onFilterMovies={onFilterMovies}
+          isShortFilm={isShortFilm}
+        />
+      </div>
       {isQueryError && (
         <span className="search__form-error">Нужно ввести ключевое слово</span>
       )}
-
-      <div className="search__border-bottom"></div>
     </section>
-  )
+  );
 }
 
-export default SearchForm
+export default SearchForm;
