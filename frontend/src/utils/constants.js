@@ -48,7 +48,6 @@ const EMAIL_PATTERN = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
 const USERNAME_PATTERN = "^[A-Za-zА-Яа-яЁё /s -]+$";
 
 export const BASE_URL = 'https://api.kniwsdiplom.nomoredomains.xyz';
-export const moviesApi = "https://api.nomoreparties.co";
 
 //Экспорт констант в другие части приложения
 export {

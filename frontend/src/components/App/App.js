@@ -191,7 +191,7 @@ function App() {
   function handleCardLike(card) {
     // Вызываем метод API для добавления карточки в избранное
     api
-      .saveMovie(card)
+      .postCard(card)
       .then((newMovie) => {
         // Если операция прошла успешно (без ошибок), выполняем следующие действия
         //Обновляем список избранных карточек (savedMovies),
